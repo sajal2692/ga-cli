@@ -7,6 +7,13 @@ Agent-native command-line interface for Google Analytics 4, built on Google's of
 - Date: 2026-07-09
 - Binary: `ga` | Package: `ga_cli` | Distribution: `ga-cli` (unclaimed on PyPI as of 2026-07-09)
 
+> **As shipped (v1.0.1):** two names in this spec were unavailable in practice.
+> The **PyPI distribution is `ga-agent-cli`** (`ga-cli` is blocked as confusable
+> with the existing `gacli`), and the **command is `ga4`** (`ga` collides with the
+> oh-my-zsh git plugin's `ga='git add'` alias). The import package (`ga_cli`), repo
+> (`sajal2692/ga-cli`), config dir (`~/.config/ga-cli`), and skill (`ga-cli`) are
+> unchanged. The rest of this document reflects the original design.
+
 ## Bootstrap notes for the implementing session
 
 Read this spec fully before writing code. Additional context:
