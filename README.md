@@ -16,10 +16,13 @@ ga realtime -d unifiedScreenName                # who is on the site now
 
 | Channel | Command |
 |---|---|
-| PyPI (primary) | `uv tool install ga-cli` (or `pipx install ga-cli`, `pip install ga-cli`) |
-| Homebrew | `brew install sajal2692/tap/ga-cli` |
+| PyPI (primary) | `uv tool install ga-agent-cli` (or `pipx install ga-agent-cli`, `pip install ga-agent-cli`) |
+| Homebrew | `brew install sajal2692/tap/ga-agent-cli` |
 | From source | `uv tool install git+https://github.com/sajal2692/ga-cli` |
 | Local dev | `uv tool install --editable ~/code/active/tools/ga-cli` |
+
+The PyPI distribution is named `ga-agent-cli` (the name `ga-cli` was unavailable), but the
+installed command is `ga` and the import package is `ga_cli`.
 
 Verify with `ga --version`.
 
@@ -127,7 +130,7 @@ The wheel bundles a Claude Code skill so agents know how to drive the CLI:
 | Method | Command |
 |---|---|
 | Bundled installer (recommended) | `ga skill install` (`--project` for a repo-local install) |
-| Homebrew | `brew install sajal2692/tap/ga-cli` then `ga skill install` |
+| Homebrew | `brew install sajal2692/tap/ga-agent-cli` then `ga skill install` |
 | skills CLI | `npx skills add sajal2692/ga-cli` |
 | Manual | `cp -r skills/ga-cli ~/.claude/skills/` |
 
@@ -150,7 +153,7 @@ monkeypatched with fakes returning real proto messages.
 1. Update `CHANGELOG.md` and bump `version` in `pyproject.toml`.
 2. Tag `vX.Y.Z` and push; `release.yml` runs checks, builds, publishes to PyPI via
    trusted publishing, and creates the GitHub release.
-3. Verify `uv tool install ga-cli==X.Y.Z`.
+3. Verify `uv tool install ga-agent-cli==X.Y.Z`.
 4. Update the Homebrew formula in `sajal2692/homebrew-tap` (bump `url`/`sha256`,
-   rerun `brew update-python-resources ga-cli`), then `brew install` smoke test.
+   rerun `brew update-python-resources ga-agent-cli`), then `brew install` smoke test.
 5. Verify `ga skill install` from the brew build.

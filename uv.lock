@@ -397,7 +397,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ga-cli"
+name = "ga-agent-cli"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [

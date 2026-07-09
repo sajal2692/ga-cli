@@ -1,5 +1,5 @@
 [project]
-name = "ga-cli"
+name = "ga-agent-cli"
 version = "1.0.0"
 description = "Agent-native CLI for Google Analytics 4"
 readme = "README.md"
