@@ -30,7 +30,7 @@ def _from_service_account(path_value: str, source: str) -> CredentialInfo:
     if not path.is_file():
         raise CliError(
             f'Credentials file not found: {path} (from {source}). '
-            'Run "ga auth guide" for setup steps.',
+            'Run "ga4 auth guide" for setup steps.',
             EXIT_AUTH,
         )
     try:
@@ -41,7 +41,7 @@ def _from_service_account(path_value: str, source: str) -> CredentialInfo:
     except (ValueError, KeyError) as exc:
         raise CliError(
             f"Invalid service account key at {path} (from {source}): {exc}. "
-            'Run "ga auth guide" for setup steps.',
+            'Run "ga4 auth guide" for setup steps.',
             EXIT_AUTH,
         ) from exc
     return CredentialInfo(

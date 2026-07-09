@@ -19,7 +19,7 @@ def run_with_error(invoke: Any, fake_data: FakeDataClient, error: Exception) -> 
 def test_unauthenticated_exit_4(invoke: Any, fake_data: FakeDataClient) -> None:
     result = run_with_error(invoke, fake_data, api_exceptions.Unauthenticated("bad token"))
     assert result.exit_code == 4
-    assert "ga auth check" in result.stderr
+    assert "ga4 auth check" in result.stderr
     assert result.stdout == ""
 
 
@@ -30,7 +30,7 @@ def test_permission_denied_exit_6_with_remediation(
     assert result.exit_code == 6
     assert "Access denied to properties/123456789" in result.stderr
     assert "Grant Viewer access" in result.stderr
-    assert 'ga properties' in result.stderr
+    assert 'ga4 properties' in result.stderr
 
 
 def test_permission_denied_quota_reason_exit_7(invoke: Any, fake_data: FakeDataClient) -> None:
@@ -38,7 +38,7 @@ def test_permission_denied_quota_reason_exit_7(invoke: Any, fake_data: FakeDataC
         invoke, fake_data, api_exceptions.PermissionDenied("Property quota exhausted")
     )
     assert result.exit_code == 7
-    assert 'ga quota' in result.stderr
+    assert 'ga4 quota' in result.stderr
 
 
 def test_not_found_exit_5(invoke: Any, fake_data: FakeDataClient) -> None:
@@ -49,7 +49,7 @@ def test_not_found_exit_5(invoke: Any, fake_data: FakeDataClient) -> None:
 def test_resource_exhausted_exit_7(invoke: Any, fake_data: FakeDataClient) -> None:
     result = run_with_error(invoke, fake_data, api_exceptions.ResourceExhausted("tokens gone"))
     assert result.exit_code == 7
-    assert 'Check remaining tokens with "ga quota".' in result.stderr
+    assert 'Check remaining tokens with "ga4 quota".' in result.stderr
 
 
 def test_too_many_requests_exit_7(invoke: Any, fake_data: FakeDataClient) -> None:

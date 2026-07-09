@@ -31,10 +31,10 @@ Set up read-only Google Analytics 4 access for ga-cli:
    mv ~/Downloads/<key>.json ~/.config/ga-cli/sa.json
    printf 'credentials = "~/.config/ga-cli/sa.json"\\ndefault_property = "properties/<id>"\\n' \\
      > ~/.config/ga-cli/config.toml
-   (find the property ID with: ga properties)
+   (find the property ID with: ga4 properties)
 
 6. Verify end to end:
-   ga auth check --ping\
+   ga4 auth check --ping\
 """
 
 

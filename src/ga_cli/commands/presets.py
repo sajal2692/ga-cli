@@ -15,7 +15,7 @@ def _make_preset(
     order: tuple[str, ...],
 ) -> click.Command:
     equivalent = (
-        f"ga report -m {','.join(metrics)} -d {','.join(dimensions)} "
+        f"ga4 report -m {','.join(metrics)} -d {','.join(dimensions)} "
         + " ".join(f"-o {spec}" for spec in order)
     )
 

@@ -12,7 +12,7 @@ PROPERTY_RE = re.compile(r"^properties/\d+$")
 
 NO_PROPERTY_MESSAGE = (
     "No property specified. Pass -P, set GA_PROPERTY, or set default_property in "
-    '~/.config/ga-cli/config.toml. Run "ga properties" to list available properties.'
+    '~/.config/ga-cli/config.toml. Run "ga4 properties" to list available properties.'
 )
 
 

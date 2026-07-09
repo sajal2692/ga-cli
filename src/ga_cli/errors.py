@@ -20,9 +20,9 @@ EXIT_PERMISSION = 6
 EXIT_QUOTA = 7
 EXIT_RETRYABLE = 8
 
-NO_CREDENTIALS_MESSAGE = 'No Google credentials found. Run "ga auth guide" for setup steps.'
+NO_CREDENTIALS_MESSAGE = 'No Google credentials found. Run "ga4 auth guide" for setup steps.'
 
-FIELD_HINT = 'Hint: run "ga meta --search <field>" to find valid metric and dimension names.'
+FIELD_HINT = 'Hint: run "ga4 meta --search <field>" to find valid metric and dimension names.'
 
 RETRYABLE_EXCEPTIONS = (
     api_exceptions.DeadlineExceeded,
@@ -52,13 +52,14 @@ def _permission_denied(
 ) -> tuple[int, str]:
     message = _api_message(exc)
     if re.search(r"quota|rate limit|too many|exhausted", message, re.IGNORECASE):
-        return EXIT_QUOTA, f'{message} Check remaining tokens with "ga quota".'
+        return EXIT_QUOTA, f'{message} Check remaining tokens with "ga4 quota".'
     prop = obj.get("_resolved_property")
     if prop:
-        principal = obj.get("_principal") or 'your credentials principal (see "ga auth check")'
+        principal = obj.get("_principal") or 'your credentials principal (see "ga4 auth check")'
         return EXIT_PERMISSION, (
             f"Access denied to {prop}. Grant Viewer access to {principal} in "
-            'GA4 Admin > Property access management, or check the property ID with "ga properties".'
+            'GA4 Admin > Property access management, or check the property ID '
+            'with "ga4 properties".'
         )
     return EXIT_PERMISSION, f"Permission denied: {message}"
 
@@ -72,21 +73,21 @@ def _map_exception(exc: Exception, obj: dict[str, Any]) -> tuple[int, str]:
         return EXIT_RETRYABLE, f"Transient failure: {exc} Retry the command."
     if isinstance(exc, auth_exceptions.GoogleAuthError):
         return EXIT_AUTH, (
-            f'Authentication failed: {exc} Run "ga auth check" to inspect credentials.'
+            f'Authentication failed: {exc} Run "ga4 auth check" to inspect credentials.'
         )
     if isinstance(exc, api_exceptions.Unauthenticated):
         return EXIT_AUTH, (
             f'Authentication failed: {_api_message(exc)} '
-            'Run "ga auth check" to inspect credentials.'
+            'Run "ga4 auth check" to inspect credentials.'
         )
     if isinstance(exc, (api_exceptions.ResourceExhausted, api_exceptions.TooManyRequests)):
-        return EXIT_QUOTA, f'{_api_message(exc)} Check remaining tokens with "ga quota".'
+        return EXIT_QUOTA, f'{_api_message(exc)} Check remaining tokens with "ga4 quota".'
     if isinstance(exc, api_exceptions.PermissionDenied):
         return _permission_denied(exc, obj)
     if isinstance(exc, api_exceptions.NotFound):
         return EXIT_NOT_FOUND, (
             f'Not found: {_api_message(exc)} '
-            'Run "ga properties" to list available properties.'
+            'Run "ga4 properties" to list available properties.'
         )
     if isinstance(exc, api_exceptions.InvalidArgument):
         message = _api_message(exc)
@@ -98,7 +99,7 @@ def _map_exception(exc: Exception, obj: dict[str, Any]) -> tuple[int, str]:
         if re.search(r"invalid_grant|invalid_rapt|expired or revoked", message, re.IGNORECASE):
             return EXIT_AUTH, (
                 f'Credentials rejected: {message} '
-                'Re-authenticate, or run "ga auth guide" for setup steps.'
+                'Re-authenticate, or run "ga4 auth guide" for setup steps.'
             )
         return EXIT_RETRYABLE, f"Transient failure: {message} Retry the command."
     return EXIT_ERROR, str(exc)

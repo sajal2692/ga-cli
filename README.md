@@ -1,15 +1,15 @@
 # ga-cli
 
-Agent-native command-line interface for Google Analytics 4. One binary (`ga`),
+Agent-native command-line interface for Google Analytics 4. One binary (`ga4`),
 task-first commands, flattened JSON that agents and scripts can consume directly,
 stable exit codes for branching, and zero interactive prompts. Read-only by
 construction: only read methods of the GA4 Data and Admin APIs are ever bound.
 
 ```bash
-ga trend -r 7d                                  # daily users/sessions/views
-ga pages -f 'pagePath=^/blog' --limit 10        # top blog posts
-ga report -m sessions -d sessionDefaultChannelGroup --compare prev
-ga realtime -d unifiedScreenName                # who is on the site now
+ga4 trend -r 7d                                  # daily users/sessions/views
+ga4 pages -f 'pagePath=^/blog' --limit 10        # top blog posts
+ga4 report -m sessions -d sessionDefaultChannelGroup --compare prev
+ga4 realtime -d unifiedScreenName                # who is on the site now
 ```
 
 ## Install
@@ -22,13 +22,13 @@ ga realtime -d unifiedScreenName                # who is on the site now
 | Local dev | `uv tool install --editable ~/code/active/tools/ga-cli` |
 
 The PyPI distribution is named `ga-agent-cli` (the name `ga-cli` was unavailable), but the
-installed command is `ga` and the import package is `ga_cli`.
+installed command is `ga4` and the import package is `ga_cli`.
 
-Verify with `ga --version`.
+Verify with `ga4 --version`.
 
 ## Auth setup
 
-`ga auth guide` prints the full copy-pasteable steps. Summary:
+`ga4 auth guide` prints the full copy-pasteable steps. Summary:
 
 1. Create a Google Cloud project and enable `analyticsdata.googleapis.com` and
    `analyticsadmin.googleapis.com`.
@@ -45,7 +45,7 @@ blog = "properties/123456789"
 site = "properties/987654321"
 ```
 
-5. Verify end to end: `ga auth check --ping`.
+5. Verify end to end: `ga4 auth check --ping`.
 
 Credential resolution order: `--credentials` > `GA_CREDENTIALS` > config `credentials` >
 `GOOGLE_APPLICATION_CREDENTIALS` > application default credentials. The only scope ever
@@ -58,16 +58,16 @@ the sole accessible property (when the credentials can see exactly one).
 
 | Command | Purpose |
 |---|---|
-| `ga report` | Core reporting primitive: metrics, dimensions, ranges, filters, ordering, paging |
-| `ga realtime` | Last-30-minutes activity |
-| `ga pages` / `ga sources` / `ga events` / `ga trend` | Presets for the most common questions |
-| `ga accounts` / `ga properties [list\|get]` | Account and property discovery |
-| `ga streams` / `ga custom-dimensions` / `ga custom-metrics` / `ga key-events` | Property metadata |
-| `ga meta` | Valid metric/dimension names (including custom fields); never guess names |
-| `ga compat` | Check a metric/dimension combination before spending report tokens |
-| `ga quota` | Remaining report token quota |
-| `ga auth check [--ping]` / `ga auth guide` | Credential verification and setup steps |
-| `ga skill install [--project] [--force]` / `show` / `path` | Claude Code skill management |
+| `ga4 report` | Core reporting primitive: metrics, dimensions, ranges, filters, ordering, paging |
+| `ga4 realtime` | Last-30-minutes activity |
+| `ga4 pages` / `ga4 sources` / `ga4 events` / `ga4 trend` | Presets for the most common questions |
+| `ga4 accounts` / `ga4 properties [list\|get]` | Account and property discovery |
+| `ga4 streams` / `ga4 custom-dimensions` / `ga4 custom-metrics` / `ga4 key-events` | Property metadata |
+| `ga4 meta` | Valid metric/dimension names (including custom fields); never guess names |
+| `ga4 compat` | Check a metric/dimension combination before spending report tokens |
+| `ga4 quota` | Remaining report token quota |
+| `ga4 auth check [--ping]` / `ga4 auth guide` | Credential verification and setup steps |
+| `ga4 skill install [--project] [--force]` / `show` / `path` | Claude Code skill management |
 
 Full flag reference: [skills/ga-cli/references/commands.md](skills/ga-cli/references/commands.md).
 
@@ -120,7 +120,7 @@ Operators: `==` `!=` `=@` (contains) `!@` `=^` (begins) `=$` (ends) `=~` (regex)
 Anything the DSL cannot express: `--filter-json '<FilterExpression JSON>'` or `@file`.
 
 GA4 standard properties allow roughly 200k core tokens/day, 40k/hour, and 10 concurrent
-requests; check live state with `ga quota`. Token cost scales with rows, date range,
+requests; check live state with `ga4 quota`. Token cost scales with rows, date range,
 and cardinality.
 
 ## Claude Code skill
@@ -129,12 +129,12 @@ The wheel bundles a Claude Code skill so agents know how to drive the CLI:
 
 | Method | Command |
 |---|---|
-| Bundled installer (recommended) | `ga skill install` (`--project` for a repo-local install) |
-| Homebrew | `brew install sajal2692/tap/ga-agent-cli` then `ga skill install` |
+| Bundled installer (recommended) | `ga4 skill install` (`--project` for a repo-local install) |
+| Homebrew | `brew install sajal2692/tap/ga-agent-cli` then `ga4 skill install` |
 | skills CLI | `npx skills add sajal2692/ga-cli` |
 | Manual | `cp -r skills/ga-cli ~/.claude/skills/` |
 
-Reinstall after upgrading the CLI: `ga skill install --force`.
+Reinstall after upgrading the CLI: `ga4 skill install --force`.
 
 ## Development
 
@@ -156,4 +156,4 @@ monkeypatched with fakes returning real proto messages.
 3. Verify `uv tool install ga-agent-cli==X.Y.Z`.
 4. Update the Homebrew formula in `sajal2692/homebrew-tap` (bump `url`/`sha256`,
    rerun `brew update-python-resources ga-agent-cli`), then `brew install` smoke test.
-5. Verify `ga skill install` from the brew build.
+5. Verify `ga4 skill install` from the brew build.

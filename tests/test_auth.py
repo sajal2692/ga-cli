@@ -113,7 +113,7 @@ def test_auth_check_missing_file_exit_4(invoke: Any, fake_admin: FakeAdminClient
     result = invoke("auth", "check", env={"GA_CREDENTIALS": "/nonexistent/sa.json"})
     assert result.exit_code == 4
     assert "Credentials file not found" in result.stderr
-    assert 'ga auth guide' in result.stderr
+    assert 'ga4 auth guide' in result.stderr
     assert result.stdout == ""
 
 
@@ -129,7 +129,7 @@ def test_auth_check_no_credentials_exit_4(
     result = invoke("auth", "check")
     assert result.exit_code == 4
     assert result.stderr.strip() == (
-        'Error: No Google credentials found. Run "ga auth guide" for setup steps.'
+        'Error: No Google credentials found. Run "ga4 auth guide" for setup steps.'
     )
 
 
@@ -138,7 +138,7 @@ def test_auth_guide_text(invoke: Any) -> None:
     assert result.exit_code == 0
     assert "analyticsdata.googleapis.com" in result.stdout
     assert "analyticsadmin.googleapis.com" in result.stdout
-    assert "ga auth check --ping" in result.stdout
+    assert "ga4 auth check --ping" in result.stdout
     assert result.stderr == ""
 
 

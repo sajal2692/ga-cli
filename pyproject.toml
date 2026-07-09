@@ -1,6 +1,6 @@
 [project]
 name = "ga-agent-cli"
-version = "1.0.0"
+version = "1.0.1"
 description = "Agent-native CLI for Google Analytics 4"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -28,7 +28,7 @@ Homepage = "https://github.com/sajal2692/ga-cli"
 Changelog = "https://github.com/sajal2692/ga-cli/blob/main/CHANGELOG.md"
 
 [project.scripts]
-ga = "ga_cli.cli:cli"
+ga4 = "ga_cli.cli:cli"
 
 [build-system]
 requires = ["hatchling"]

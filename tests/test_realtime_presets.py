@@ -130,4 +130,4 @@ def test_preset_compare(invoke: Any, fake_data: FakeDataClient, frozen_today: An
 
 def test_preset_epilog_shows_equivalent(invoke: Any) -> None:
     result = invoke("pages", "--help")
-    assert "Equivalent: ga report -m screenPageViews,activeUsers -d pagePath" in result.stdout
+    assert "Equivalent: ga4 report -m screenPageViews,activeUsers -d pagePath" in result.stdout

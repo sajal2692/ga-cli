@@ -40,27 +40,27 @@ property. Aliases come from the config `[properties]` table.
 
 ### Discovery
 
-- `ga accounts` - account summaries with nested properties. Bare array.
-- `ga properties [list]` - flattened property list. Bare array.
-- `ga properties get [PROPERTY]` - property detail (time zone, currency, service level).
-- `ga streams` - data streams (measurement IDs). Bare array.
-- `ga custom-dimensions` / `ga custom-metrics` - property-defined fields. Bare arrays.
-- `ga key-events` - key events with counting method. Bare array.
-- `ga meta [--search TEXT] [--type dimensions|metrics|all] [--custom] [--full]` -
+- `ga4 accounts` - account summaries with nested properties. Bare array.
+- `ga4 properties [list]` - flattened property list. Bare array.
+- `ga4 properties get [PROPERTY]` - property detail (time zone, currency, service level).
+- `ga4 streams` - data streams (measurement IDs). Bare array.
+- `ga4 custom-dimensions` / `ga4 custom-metrics` - property-defined fields. Bare arrays.
+- `ga4 key-events` - key events with counting method. Bare array.
+- `ga4 meta [--search TEXT] [--type dimensions|metrics|all] [--custom] [--full]` -
   valid field names. Returns `{"dimensions": [...], "metrics": [...]}`.
-- `ga compat -m CSV -d CSV` - checks a combination before spending tokens. Returns
+- `ga4 compat -m CSV -d CSV` - checks a combination before spending tokens. Returns
   `{"compatible": bool, "incompatible_metrics": [...], "incompatible_dimensions": [...]}`.
-- `ga quota` - remaining report tokens. Bare object.
+- `ga4 quota` - remaining report tokens. Bare object.
 
 ### Auth
 
-- `ga auth check [--ping]` - verifies the credential chain; `--ping` runs a 1-row report
+- `ga4 auth check [--ping]` - verifies the credential chain; `--ping` runs a 1-row report
   and reports quota. Failures exit with the mapped code.
-- `ga auth guide` - copy-pasteable setup steps (service account, API enablement, grant).
+- `ga4 auth guide` - copy-pasteable setup steps (service account, API enablement, grant).
 
 ### Reporting
 
-`ga report` flags:
+`ga4 report` flags:
 
 | Flag | Default | Notes |
 |---|---|---|
@@ -103,27 +103,27 @@ Multi-range unit note: with N date ranges the API counts `row_count`, `--limit`,
 contain one row per range (N per base row, zero-filled). `has_more` and `--all`
 account for this.
 
-`ga realtime [-m CSV] [-d CSV] [--minutes 1-30] [--limit N]` - last-30-minutes
+`ga4 realtime [-m CSV] [-d CSV] [--minutes 1-30] [--limit N]` - last-30-minutes
 activity. Envelope has `minutes` instead of `date_ranges`.
 
 ### Presets
 
-Sugar over `ga report`; accept `-r`, `--limit` (default 10), `-f`, `--compare`,
+Sugar over `ga4 report`; accept `-r`, `--limit` (default 10), `-f`, `--compare`,
 `--fail-empty`, `--results-only`.
 
 | Preset | Dimensions | Metrics | Order |
 |---|---|---|---|
-| `ga pages` | pagePath | screenPageViews, activeUsers | -screenPageViews |
-| `ga sources` | sessionDefaultChannelGroup | sessions, activeUsers | -sessions |
-| `ga events` | eventName | eventCount, activeUsers | -eventCount |
-| `ga trend` | date | activeUsers, sessions, screenPageViews | date |
+| `ga4 pages` | pagePath | screenPageViews, activeUsers | -screenPageViews |
+| `ga4 sources` | sessionDefaultChannelGroup | sessions, activeUsers | -sessions |
+| `ga4 events` | eventName | eventCount, activeUsers | -eventCount |
+| `ga4 trend` | date | activeUsers, sessions, screenPageViews | date |
 
 ### Skill
 
-- `ga skill install [--project] [--force]` - copy the bundled skill to
+- `ga4 skill install [--project] [--force]` - copy the bundled skill to
   `~/.claude/skills/ga-cli/` (or `./.claude/skills/` with `--project`).
-- `ga skill show` - print the bundled SKILL.md.
-- `ga skill path` - print the bundled skill directory.
+- `ga4 skill show` - print the bundled SKILL.md.
+- `ga4 skill path` - print the bundled skill directory.
 
 ## Date range grammar
 
@@ -165,10 +165,10 @@ Sugar over `ga report`; accept `-r`, `--limit` (default 10), `-f`, `--compare`,
 ## Examples
 
 ```bash
-ga report -m activeUsers,sessions -d date -o date                  # daily trend
-ga report -m screenPageViews -d pagePath -f 'pagePath=^/blog' -r mtd --limit 10
-ga report -m sessions -d sessionDefaultChannelGroup --compare prev
-ga report -m eventCount -d eventName --all --results-only | jq 'map(.eventName)'
-ga realtime -d unifiedScreenName
-ga meta --search engagement --type metrics
+ga4 report -m activeUsers,sessions -d date -o date                  # daily trend
+ga4 report -m screenPageViews -d pagePath -f 'pagePath=^/blog' -r mtd --limit 10
+ga4 report -m sessions -d sessionDefaultChannelGroup --compare prev
+ga4 report -m eventCount -d eventName --all --results-only | jq 'map(.eventName)'
+ga4 realtime -d unifiedScreenName
+ga4 meta --search engagement --type metrics
 ```

@@ -20,7 +20,7 @@ from ga_cli.commands import (
 
 
 @click.group()
-@click.version_option(version=__version__, prog_name="ga")
+@click.version_option(version=__version__, prog_name="ga4")
 @global_options
 @click.pass_context
 def cli(ctx: click.Context) -> None:
