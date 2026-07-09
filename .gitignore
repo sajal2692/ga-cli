@@ -1,0 +1,19 @@
+.venv/
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.DS_Store
+
+# Never commit credentials
+*sa*.json
+service-account*.json
+credentials*.json
+!tests/golden/*.json
+config.toml

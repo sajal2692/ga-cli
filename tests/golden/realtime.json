@@ -1,0 +1,13 @@
+{
+  "property": "properties/123456789",
+  "minutes": 30,
+  "rows": [
+    {
+      "unifiedScreenName": "Home",
+      "activeUsers": 5
+    }
+  ],
+  "row_count": 1,
+  "returned": 1,
+  "has_more": false
+}

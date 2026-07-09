@@ -1,0 +1,8 @@
+[
+  {
+    "parameter": "coins",
+    "display": "Coins",
+    "scope": "EVENT",
+    "unit": "STANDARD"
+  }
+]

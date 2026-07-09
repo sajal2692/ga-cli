@@ -1,0 +1,10 @@
+{
+  "compatible": false,
+  "incompatible_metrics": [
+    {
+      "name": "purchaserRate",
+      "reason": "INCOMPATIBLE"
+    }
+  ],
+  "incompatible_dimensions": []
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "4567",
+    "stream": "properties/123456789/dataStreams/4567",
+    "type": "WEB_DATA_STREAM",
+    "display": "Web",
+    "uri": "https://sajalsharma.com",
+    "measurement_id": "G-ABC123"
+  },
+  {
+    "id": "999",
+    "stream": "properties/123456789/dataStreams/999",
+    "type": "IOS_APP_DATA_STREAM",
+    "display": "iOS",
+    "bundle_id": "com.example.app"
+  }
+]

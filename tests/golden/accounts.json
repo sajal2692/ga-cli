@@ -1,0 +1,16 @@
+[
+  {
+    "account": "accounts/100",
+    "display": "Sajal",
+    "properties": [
+      {
+        "property": "properties/123456789",
+        "display": "sajalsharma.com"
+      },
+      {
+        "property": "properties/987654321",
+        "display": "side project"
+      }
+    ]
+  }
+]

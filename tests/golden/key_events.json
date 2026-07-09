@@ -1,0 +1,13 @@
+[
+  {
+    "id": "9876",
+    "event_name": "sign_up",
+    "counting_method": "ONCE_PER_EVENT",
+    "custom": true
+  },
+  {
+    "id": "1111",
+    "event_name": "purchase",
+    "counting_method": "ONCE_PER_SESSION"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "property": "properties/123456789",
+  "date_ranges": [
+    {
+      "name": "current",
+      "start": "2026-07-01",
+      "end": "2026-07-02"
+    }
+  ],
+  "rows": [
+    {
+      "pagePath": "/a",
+      "sessions": 4000
+    },
+    {
+      "pagePath": "/b",
+      "sessions": 102
+    }
+  ],
+  "row_count": 2,
+  "returned": 2,
+  "has_more": false,
+  "totals": {
+    "sessions": 4102
+  },
+  "quota": {
+    "tokens_per_day": {
+      "consumed": 14,
+      "remaining": 199986
+    },
+    "tokens_per_hour": {
+      "consumed": 14,
+      "remaining": 39986
+    },
+    "concurrent_requests": {
+      "consumed": 0,
+      "remaining": 10
+    }
+  }
+}

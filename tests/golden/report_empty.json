@@ -1,0 +1,14 @@
+{
+  "property": "properties/123456789",
+  "date_ranges": [
+    {
+      "name": "current",
+      "start": "2026-07-01",
+      "end": "2026-07-02"
+    }
+  ],
+  "rows": [],
+  "row_count": 0,
+  "returned": 0,
+  "has_more": false
+}

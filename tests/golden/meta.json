@@ -1,0 +1,15 @@
+{
+  "dimensions": [],
+  "metrics": [
+    {
+      "name": "engagementRate",
+      "display": "Engagement rate",
+      "category": "Session"
+    },
+    {
+      "name": "userEngagementDuration",
+      "display": "User engagement",
+      "category": "Session"
+    }
+  ]
+}

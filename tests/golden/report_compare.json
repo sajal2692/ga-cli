@@ -1,0 +1,40 @@
+{
+  "property": "properties/123456789",
+  "date_ranges": [
+    {
+      "name": "current",
+      "start": "2026-07-03",
+      "end": "2026-07-09"
+    },
+    {
+      "name": "previous",
+      "start": "2026-06-26",
+      "end": "2026-07-02"
+    }
+  ],
+  "rows": [
+    {
+      "date": "2026-06-26",
+      "date_range": "previous",
+      "sessions": 8
+    },
+    {
+      "date": "2026-06-26",
+      "date_range": "current",
+      "sessions": 0
+    },
+    {
+      "date": "2026-07-03",
+      "date_range": "current",
+      "sessions": 10
+    },
+    {
+      "date": "2026-07-03",
+      "date_range": "previous",
+      "sessions": 0
+    }
+  ],
+  "row_count": 2,
+  "returned": 4,
+  "has_more": false
+}

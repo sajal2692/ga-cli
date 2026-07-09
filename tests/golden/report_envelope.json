@@ -1,0 +1,27 @@
+{
+  "property": "properties/123456789",
+  "date_ranges": [
+    {
+      "name": "current",
+      "start": "2026-07-01",
+      "end": "2026-07-02"
+    }
+  ],
+  "rows": [
+    {
+      "date": "2026-07-01",
+      "pagePath": "/blog/a",
+      "activeUsers": 301,
+      "engagementRate": 0.62
+    },
+    {
+      "date": "2026-07-02",
+      "pagePath": "/b",
+      "activeUsers": 120,
+      "engagementRate": 0.4
+    }
+  ],
+  "row_count": 87,
+  "returned": 2,
+  "has_more": true
+}
