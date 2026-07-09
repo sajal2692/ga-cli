@@ -4,7 +4,7 @@ All notable changes to ga-cli are documented here. The automation contract (comm
 names, flags, env vars, exit codes, JSON field names) is frozen per major version;
 breaking it is a major-version event and is called out explicitly.
 
-## 1.0.0 - unreleased
+## 1.0.0 - 2026-07-09
 
 Initial public release.
 
